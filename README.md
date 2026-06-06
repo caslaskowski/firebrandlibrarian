@@ -4,8 +4,8 @@ A plain HTML/CSS version of firebrandlibrarian.com, rebuilt **directly from
 your WordPress export** so it can live on **GitHub Pages for free** with no
 Bluehost, no WordPress, no database — just files.
 
-The flame logo and header are drawn in code, so the site needs **zero image
-files** to look finished.
+Your circular logo and the bookshelf banner are included in `images/`, and the
+brand red (#9e3232) is used across headers, links, and accents.
 
 ## Pages (all built from your export)
 
@@ -23,7 +23,7 @@ blog.html                     Blog index
 style.css                     one stylesheet for everything
 .nojekyll                     serve files as-is on GitHub Pages
 files/                        drop your PDFs/DOCX here (see below)
-images/                       optional, only if you want your old logo back
+images/                       your logo + banner (included)
 ```
 
 ### Notes on what came from the export
@@ -107,8 +107,10 @@ Everything is editable text. Change wording by editing the text inside the
 `.html` files; restyle by editing `style.css`. On GitHub you can edit any file
 in the browser (pencil icon) and the live site updates in about a minute.
 
-### Optional: your old logo
-You don't need it — the built-in flame is complete. To use your original
-circular logo, save it as `images/logo.png`, then in each `.html` header
-replace the `<svg>…</svg>` inside `<span class="monogram">` with
-`<img src="images/logo.png" alt="Firebrand Librarian" width="46" height="46">`.
+### Swapping the logo or banner
+Your real logo (`cropped-cropped-fblogo-circle.png`) and banner
+(`cropped-cropped-banner.jpg`) are already in `images/` and wired in. To change
+either, drop a replacement in `images/` with the same filename, or edit the
+`<img>` paths in the page templates. The logo is shown as a circle and the
+banner is cropped to a strip; adjust `.logo-img` / `.banner img` in `style.css`
+to taste.
