@@ -376,3 +376,61 @@ blockquote + p { margin-top: -.4rem; }
   main { animation: none; }
   * { transition: none !important; }
 }
+
+/* ===== additions for full export: blog, documents, posts ===== */
+
+/* document download buttons (from WordPress file blocks) */
+.doc-file { margin: .6rem 0; }
+.doc-file a {
+  display: flex; align-items: center; gap: .7rem;
+  padding: .85rem 1.1rem;
+  background: var(--card); border: 1px solid var(--rule);
+  border-radius: .6rem; text-decoration: none; color: var(--ink);
+  transition: all .15s;
+}
+.doc-file a:hover {
+  border-color: var(--ember); transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(36,29,24,.06);
+}
+.doc-file .ic {
+  flex: 0 0 auto; width: 34px; height: 34px;
+  display: grid; place-items: center; border-radius: .35rem;
+  background: linear-gradient(160deg, var(--amber), var(--ember));
+  color: #fff; font-family: "Fraunces", serif; font-size: .62rem; font-weight: 700;
+}
+.doc-file .doc-name { font-family: "Fraunces", Georgia, serif; font-weight: 500; }
+
+/* blog index */
+.post-list { list-style: none; padding: 0; margin: 1rem 0 0; }
+.post-list li {
+  margin: 0; padding: 1.4rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.post-list li:first-child { padding-top: .5rem; }
+.post-list h2 {
+  border: none; margin: 0 0 .2rem; padding: 0;
+  font-size: 1.5rem; font-weight: 600;
+}
+.post-list h2 a { color: var(--ink); text-decoration: none; }
+.post-list h2 a:hover { color: var(--ember); }
+.post-date {
+  font-family: "Fraunces", Georgia, serif;
+  font-size: .85rem; letter-spacing: .04em; text-transform: uppercase;
+  color: var(--muted); margin: 0 0 .5rem;
+}
+.post-excerpt { margin: .3rem 0 .6rem; color: #3d352d; }
+.readmore {
+  font-family: "Fraunces", Georgia, serif; font-weight: 500;
+  text-decoration: none;
+}
+.readmore::after { content: " \2192"; }
+
+/* single post */
+.post-body { margin-top: .4rem; }
+.post-body p { margin: 0 0 1.1rem; }
+.signoff { font-style: italic; color: var(--muted); }
+.backlink {
+  display: inline-block; margin-top: 2rem;
+  font-family: "Fraunces", Georgia, serif; text-decoration: none;
+}
+.backlink::before { content: "\2190 "; }

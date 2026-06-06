@@ -1,117 +1,114 @@
 # Firebrand Librarian — static site
 
-This is a plain HTML/CSS version of firebrandlibrarian.com, rebuilt so it can
-live on **GitHub Pages for free** and no longer needs Bluehost or WordPress.
+A plain HTML/CSS version of firebrandlibrarian.com, rebuilt **directly from
+your WordPress export** so it can live on **GitHub Pages for free** with no
+Bluehost, no WordPress, no database — just files.
 
-There is no database, no PHP, and nothing to maintain — just files. The flame
-logo and header are drawn in code, so the site needs **zero image files** to
-look finished.
+The flame logo and header are drawn in code, so the site needs **zero image
+files** to look finished.
 
-## What's in here
+## Pages (all built from your export)
 
 ```
-index.html                  Who am I? (home)
-cv.html                     CV (embeds files/cv.pdf)
-course-materials.html       Course Materials overview
-ai-teaching-tools.html      AI Teaching Tools & Resources
-legal-research-examples.html
-contact.html                Contact (your email is already wired in)
-style.css                   One stylesheet for every page
-.nojekyll                   Tells GitHub to serve the files as-is
-files/                      Drop your PDFs here (see below)
-images/                     Optional — only if you want your old logo back
+index.html                    Who am I?           (home)
+cv.html                       CV                  (full CV — see note)
+publications.html             Publications        (books, chapters, articles, reviews)
+course-materials.html         Course Materials    (+ links to the two below)
+ai-teaching-tools.html        AI Teaching Tools & Resources
+legal-research-examples.html  Legal Research Examples
+language-matters.html         Language Matters    (inclusive-language guide)
+contact.html                  Contact
+blog.html                     Blog index
+<13 post pages>.html          one file per published post
+style.css                     one stylesheet for everything
+.nojekyll                     serve files as-is on GitHub Pages
+files/                        drop your PDFs/DOCX here (see below)
+images/                       optional, only if you want your old logo back
 ```
+
+### Notes on what came from the export
+- Your **blog** (13 published posts) and the **Publications** and **Language
+  Matters** pages were all published but weren't in your site's menu. They're
+  included here and added to the navigation so nothing is lost. If you'd rather
+  hide any of them, delete its line from the `<nav>` in each `.html` file (or
+  just delete the page).
+- Your **CV page was empty** in the current site's export, so I filled it from
+  your older `firebrandlib.wordpress.com` export, which still had a full CV
+  (experience, education, presentations, service, awards). **Heads up: that CV
+  is from around 2020** — it lists Duke as current, degrees "forthcoming 2020,"
+  and an NCSU candidacy through 2022, so the dates predate your move to Arizona
+  and will need refreshing. Its Publications section is also older than your
+  separate, current Publications page, so you may want to trim one of the two.
+  Edit `cv.html` to update.
+- On **Language Matters**, two leftover WordPress widget lists ("Categories"
+  and "Recent Posts") pointed at an old `firebrandlib.com` domain via the
+  Wayback Machine. Those were sidebar chrome, not page content, so they were
+  left off. The actual guide and its Resources are intact.
+- External links you'd already routed through the Wayback Machine (on the AI
+  Tools, Language Matters, and Contact pages) are preserved exactly.
+- Text is reproduced verbatim from your export — wording and spelling are
+  yours to edit if you like.
 
 ---
 
-## ⚠️ Before you cancel Bluehost: save these files
+## Before you cancel Bluehost: save these files
 
-A handful of things on your old site are **files stored on Bluehost** that
-this rebuild can't pull down on its own. Grab them first, then drop them into
-the `files/` folder using the names shown.
+Your documents are files stored on Bluehost. Grab them while the old site is
+up (WordPress **Media Library** is easiest), then drop them into `files/`
+using the names below — they're the original filenames, so downloads should
+already match.
 
-The easiest way to get them: log into WordPress → **Media Library**, or visit
-each link below while the old site is still up, then "Save As".
-
-| Save this from your old site | Save it as (inside `files/`) |
+| Where it's used | File name (put in `files/`) |
 |---|---|
-| Your CV document | `cv.pdf` |
-| Law Practice in the Age of AI & Big Data — Syllabus | `ai-bigdata-syllabus.pdf` |
-| A2J Project | `a2j-project.pdf` |
-| Law Practice Technology — Syllabus | `law-practice-technology-syllabus.pdf` |
-| Gen AI Assignment | `genai-assignment.pdf` |
-| Gen AI Appendix 3 — Education Law (9.04) | `genai-appendix3-education-law.pdf` |
+| Course Materials | `AI-and-Data-Course-Overview-F23.pdf` |
+| Course Materials | `A2J-Project.pdf` |
+| Course Materials | `24S-UA-LPT.pdf` |
+| Course Materials | `S-25-Gen-AI-Assignment.pdf` |
+| Course Materials | `S24-Gen-AI-Appendix-3-EDUCATION-LAW-_-9.04.docx` |
+| Blog post (Assignments & Syllabus) | `fiu-technology-pitch-assignment.pdf` |
+| Blog post (Assignments & Syllabus) | `fiu-professional-development-assignment.pdf` |
+| Blog post (Assignments & Syllabus) | `fiu-software-evaluation-assignment.pdf` |
+| Blog post (Assignments & Syllabus) | `fiu-law-practice-technology-syllabus-cl-draft.pdf` |
 
-If a file is actually a Word doc instead of a PDF, keep the same base name but
-change the link in the matching `.html` file (or just export it to PDF).
-
-> The site still works without these — the links will simply 404 until the
-> files are added. Add them whenever you're ready.
+The site works without these; those links just 404 until the files are added.
 
 ---
 
-## Option A — Put it online (no command line needed)
+## Option A — Put it online (no command line)
 
-1. Create a free account at https://github.com if you don't have one.
-2. Click **New repository**. Name it whatever you like
-   (e.g. `firebrandlibrarian`). Make it **Public**. Click **Create**.
-3. On the new repo page, click **uploading an existing file**.
-4. Drag in **everything from this folder** (all the `.html` files,
-   `style.css`, the `files/` and `images/` folders, and `.nojekyll`).
-   Click **Commit changes**.
-5. Go to **Settings → Pages**. Under "Build and deployment", set
-   **Source: Deploy from a branch**, **Branch: main / (root)**, and **Save**.
-6. Wait a minute, then refresh. GitHub shows the live URL, which will be
+1. Make a free account at https://github.com.
+2. **New repository** → name it (e.g. `firebrandlibrarian`) → **Public** → create.
+3. Click **uploading an existing file** and drag in **everything from this
+   folder** (all `.html` files, `style.css`, the `files/` and `images/`
+   folders, and `.nojekyll`). Commit.
+4. **Settings → Pages** → Source: **Deploy from a branch**, Branch:
+   **main / (root)** → Save.
+5. Wait a minute; GitHub shows your live URL,
    `https://YOURNAME.github.io/firebrandlibrarian/`.
-
-That's it — your site is live and free.
 
 ## Option B — Keep using firebrandlibrarian.com
 
-You can point your existing domain at GitHub Pages so the same web address
-keeps working after Bluehost is gone. Two pieces:
+Point your domain at GitHub Pages so the same address keeps working:
 
-1. **At your domain registrar** (where the domain is actually registered —
-   may or may not be Bluehost), set DNS records to GitHub's servers. GitHub's
-   official, current instructions are here — follow them exactly:
+1. At your domain registrar, set DNS per GitHub's current instructions:
    https://docs.github.com/pages/configuring-a-custom-domain-for-your-github-pages-site
-   (In short: four `A` records for the apex domain, plus a `CNAME` record for
-   `www` pointing to `YOURNAME.github.io`.)
-2. **In the repo**, Settings → Pages → **Custom domain**, enter
-   `firebrandlibrarian.com`, Save, and tick **Enforce HTTPS** once it's ready.
+2. Repo **Settings → Pages → Custom domain** → enter `firebrandlibrarian.com`
+   → Save → enable **Enforce HTTPS**.
 
-> Heads up: your **domain registration** is separate from Bluehost *hosting*.
-> If the domain itself is registered through Bluehost, don't let it lapse when
-> you cancel hosting — either keep just the domain, or transfer it to another
-> registrar first. Otherwise you'd lose the firebrandlibrarian.com name.
+> Your domain *registration* is separate from Bluehost *hosting*. If the domain
+> is registered through Bluehost, keep just the domain (or transfer it to
+> another registrar) before cancelling hosting, or you'd lose the name.
 
 ---
 
 ## Editing later
 
-Everything is hand-editable text. To change wording, open the relevant
-`.html` file and edit the text between the tags. To restyle, edit `style.css`.
-On GitHub you can click any file → the pencil icon → edit → commit, and the
-live site updates in about a minute.
+Everything is editable text. Change wording by editing the text inside the
+`.html` files; restyle by editing `style.css`. On GitHub you can edit any file
+in the browser (pencil icon) and the live site updates in about a minute.
 
-## Optional: your old logo
-
-You don't need it — the built-in flame logo is complete. But if you want your
-original circular logo or banner back:
-
-1. Save the images from your old site into the `images/` folder
-   (e.g. `logo.png`, `banner.jpg`).
-2. In each `.html` file, find the `<span class="monogram">…</span>` block in
-   the header and replace the inline `<svg>…</svg>` with
-   `<img src="images/logo.png" alt="Firebrand Librarian logo" width="46" height="46">`.
-
-## Notes on what changed
-
-- The external links on the **AI Teaching Tools** page already pointed at
-  Internet Archive (Wayback) snapshots on your old site, so they're preserved
-  as-is and won't break.
-- Your contact email was decoded and wired into the Contact and Legal Research
-  pages as a normal `mailto:` link.
-- The "reference librarian" phrase on the home page is plain text now — the old
-  link pointed at a Duke faculty page that's likely outdated. Add your current
-  faculty profile link in `index.html` if you'd like.
+### Optional: your old logo
+You don't need it — the built-in flame is complete. To use your original
+circular logo, save it as `images/logo.png`, then in each `.html` header
+replace the `<svg>…</svg>` inside `<span class="monogram">` with
+`<img src="images/logo.png" alt="Firebrand Librarian" width="46" height="46">`.

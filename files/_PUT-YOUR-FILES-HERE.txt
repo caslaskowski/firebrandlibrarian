@@ -1,0 +1,20 @@
+Drop your documents in this folder using these EXACT names so the links work.
+
+These are the original filenames from your WordPress media library, so if you
+download them from your old site they should already match.
+
+Used on the Course Materials page:
+  AI-and-Data-Course-Overview-F23.pdf
+  A2J-Project.pdf
+  24S-UA-LPT.pdf
+  S-25-Gen-AI-Assignment.pdf
+  S24-Gen-AI-Appendix-3-EDUCATION-LAW-_-9.04.docx
+
+Linked from the blog post "Class Preparation: Assignments & Syllabus":
+  fiu-technology-pitch-assignment.pdf
+  fiu-professional-development-assignment.pdf
+  fiu-software-evaluation-assignment.pdf
+  fiu-law-practice-technology-syllabus-cl-draft.pdf
+
+The site works without these — those links just won't resolve until the files
+are here. Delete this note once you're set up.
