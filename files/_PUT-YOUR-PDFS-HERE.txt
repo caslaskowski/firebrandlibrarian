@@ -1,0 +1,12 @@
+Put your PDF documents in this folder, using these exact file names so the
+site links work:
+
+  cv.pdf                                  -> linked from cv.html
+  ai-bigdata-syllabus.pdf                 -> Course Materials
+  a2j-project.pdf                         -> Course Materials
+  law-practice-technology-syllabus.pdf    -> Course Materials
+  genai-assignment.pdf                    -> Course Materials
+  genai-appendix3-education-law.pdf       -> Course Materials
+
+See the README for how to grab these from your current site before you
+cancel Bluehost. You can delete this note file once you're set up.
