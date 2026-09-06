@@ -3,91 +3,149 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Course Materials — Firebrand Librarian</title>
-<meta name="description" content="I&#x27;ll work to keep this page updated with my more recent version of class materials and resources. AI &amp; Big Data in Law Practice Law Practice in the…">
+<title>Teaching — Firebrand Librarian</title>
+<meta name="description" content="Courses, open textbook, companion websites, and teaching guides by Cas Laskowski.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,900;1,9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..900,0..100,0..1;1,9..144,400..900,0..100,0..1&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <link rel="icon" href="images/cropped-cropped-fblogo-circle.png">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
-<a class="banner" href="index.html" aria-label="Firebrand Librarian — home">
-  <img src="images/cropped-cropped-banner.jpg" alt="Funko Pop figures of women superheroes lined up on a bookshelf between books on libraries, law, and technology">
-</a>
-
 <header class="site-header">
-  <div class="brand">
-    <a class="logo" href="index.html" aria-label="Firebrand Librarian — home">
-      <img class="logo-img" src="images/cropped-cropped-fblogo-circle.png" alt="" width="58" height="58">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <img src="images/cropped-cropped-fblogo-circle.png" alt="" width="44" height="44">
       <span class="wordmark">
-        <span class="word-fire">Firebrand</span>
-        <span class="word-lib">Librarian</span>
+        <span class="name"><span>Firebrand</span> Librarian</span>
+        <span class="beta">Constantly in beta.</span>
       </span>
     </a>
-    <p class="tagline">Constantly in beta.</p>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="lines" aria-hidden="true"><i></i><i></i></span> Poke around
+    </button>
   </div>
-  <nav class="site-nav" aria-label="Primary">
-    <a href="index.html">Who am I?</a>
-    <a href="cv.html">CV</a>
-    <a href="publications.html">Publications</a>
-    <a href="course-materials.html" class="active" aria-current="page">Course Materials</a>
-    <a href="language-matters.html">Language Matters</a>
-    <a href="blog.html">Blog</a>
-    <a href="contact.html">Contact</a>
+  <nav class="site-nav" id="site-nav" aria-label="Primary">
+    <div class="wrap">
+      <a href="projects.html"><span class="label">Projects</span><span class="desc">Everything built, by area</span></a>
+      <a href="publications.html"><span class="label">Publications</span><span class="desc">Books, chapters, reports, articles</span></a>
+      <a href="speaking.html"><span class="label">Speaking</span><span class="desc">Talks, panels, workshops, podcasts</span></a>
+      <a href="course-materials.html" aria-current="page"><span class="label">Teaching</span><span class="desc">Courses, textbook, tools, guides</span></a>
+      <a href="blog.html"><span class="label">Marginalia <span>(blog)</span></span><span class="desc">Notes since 2016</span></a>
+      <a href="character-sheet.html"><span class="label">Character Sheet <span>(CV)</span></span><span class="desc">The abbreviated record, plus the full download</span></a>
+      <a href="contact.html"><span class="label">Contact</span><span class="desc">Email and speaking enquiries</span></a>
+    </div>
   </nav>
 </header>
-<nav class="subnav" aria-label="Course materials sections">
-  <a href="course-materials.html" class="active" aria-current="page">Overview</a>
-  <a href="ai-teaching-tools.html">AI Teaching Tools &amp; Resources</a>
-  <a href="legal-research-examples.html">Legal Research Examples</a>
-</nav>
-<div class="header-rule"><hr></div>
 
 <main id="main">
-<h1>Course <span class="accent">Materials</span></h1>
+  <div class="wrap teach">
+    <div class="page-head">
+      <h1>Teaching</h1>
+      <p class="lede">Courses I teach, the textbook and websites I built for them, and the guides I keep for students and colleagues. Most of it is open; take what is useful.</p>
+    </div>
 
-<p>I'll work to keep this page updated with my more recent version of class materials and resources. </p>
+    <h2>Textbook and websites</h2>
+    <ul class="notes">
+      <li class="note-card">
+        <span class="kind">Open textbook</span>
+        <h3><a href="https://opentextbooks.library.arizona.edu/legalresearch" target="_blank" rel="noopener">The Question Method of Legal Research</a></h3>
+        <p class="when">2026</p>
+        <p class="blurb">Legal research as a chain of questions. Free, open, and yours to adopt for a 1L research course.</p>
+      </li>
+      <li class="note-card">
+        <span class="kind">Interactive</span>
+        <h3><a href="https://caslaskowski.github.io/legal_research_interactive/index.html" target="_blank" rel="noopener">Question Method companion modules</a></h3>
+        <p class="when">2026</p>
+        <p class="blurb">Hands-on labs for all seventeen chapters: rank the authorities, run the citator, catch the fabricated citation.</p>
+      </li>
+      <li class="note-card">
+        <span class="kind">Tool</span>
+        <h3><a href="https://caslaskowski.github.io/ai-workbench/" target="_blank" rel="noopener">The Workbench</a></h3>
+        <p class="when">2026</p>
+        <p class="blurb">The companion site for Law Practice in the Age of AI &amp; Big Data: modules for every role a lawyer plays with AI, as user, evaluator, builder, and steward.</p>
+      </li>
+      <li class="note-card">
+        <span class="kind">Open textbook</span>
+        <h3><a href="https://opentextbooks.library.arizona.edu/lawlibrarianship/" target="_blank" rel="noopener">Introduction to Law Librarianship</a></h3>
+        <p class="when">2021, second edition 2025</p>
+        <p class="blurb">The field’s introductory text, co-edited with Zanada Joyner. Used in law librarianship courses and for onboarding in libraries nationwide.</p>
+      </li>
+    </ul>
 
-<h2>AI &amp; Big Data in Law Practice</h2>
+    <h2>Courses</h2>
+    <div class="course">
+      <h3>Law Practice in the Age of AI &amp; Big Data</h3>
+      <p>An experiential course on the ethical and practical questions where law, policy, and artificial intelligence meet. Proposed and first taught at Duke; brought to Arizona in 2021. <a href="https://caslaskowski.github.io/ai-workbench/" target="_blank" rel="noopener">The Workbench</a> is its companion site.</p>
+      <div class="files">
+        <a href="files/AI-and-Data-Course-Overview-F23.pdf"><span class="ic">PDF</span>Syllabus</a>
+        <a href="files/A2J-Project.pdf"><span class="ic">PDF</span>A2J Project</a>
+        <a href="ai-teaching-tools.html">AI Teaching Tools &amp; Resources</a>
+      </div>
+    </div>
+    <div class="course">
+      <h3>Law Practice Technology</h3>
+      <p>The tools lawyers actually use, and how to evaluate the next one. Taught at FIU and Arizona.</p>
+      <div class="files">
+        <a href="files/24S-UA-LPT.pdf"><span class="ic">PDF</span>Syllabus</a>
+      </div>
+    </div>
+    <div class="course">
+      <h3>Legal Analysis, Writing &amp; Research</h3>
+      <p>The 1L research sequence, co-taught with the writing faculty and built on the <a href="https://opentextbooks.library.arizona.edu/legalresearch" target="_blank" rel="noopener">Question Method</a>.</p>
+      <div class="files">
+        <a href="files/S-25-Gen-AI-Assignment.pdf"><span class="ic">PDF</span>Gen AI assignment</a>
+        <a href="legal-research-examples.html">Legal Research Examples</a>
+      </div>
+    </div>
+    <div class="course">
+      <h3>Also taught</h3>
+      <p>Teaching Legal Research; independent studies on AI in law; Innovation for Justice (the course that built the <a href="https://medicaldebtpolicyscorecard.org/" target="_blank" rel="noopener">Medical Debt Policy Scorecard</a>); Designing Creative Legal Solutions (Duke).</p>
+    </div>
 
-<div class="doc-file"><a href="files/AI-and-Data-Course-Overview-F23.pdf"><span class="ic">PDF</span><span class="doc-name">Law Practice in the Age of AI & Big Data Syllabus</span></a></div>
-
-<div class="doc-file"><a href="files/A2J-Project.pdf"><span class="ic">PDF</span><span class="doc-name">A2J Project</span></a></div>
-
-<p><a href="ai-teaching-tools.html">AI Teaching Tools and resources</a></p>
-
-<h2>Law Practice Technology</h2>
-
-<div class="doc-file"><a href="files/24S-UA-LPT.pdf"><span class="ic">PDF</span><span class="doc-name">Law Practice Technology Syllabus</span></a></div>
-
-<h2>1L Legal Research</h2>
-
-<div class="doc-file"><a href="files/S-25-Gen-AI-Assignment.pdf"><span class="ic">PDF</span><span class="doc-name">Gen AI Assignment</span></a></div>
-
-<div class="doc-file"><a href="files/S24-Gen-AI-Appendix-3-EDUCATION-LAW-_-9.04.docx"><span class="ic">DOCX</span><span class="doc-name">Gen AI Appendix 3 EDUCATION LAW _ 9.04</span></a></div>
+    <h2>Guides and resources</h2>
+    <ul class="notes">
+      <li class="note-card">
+        <span class="kind">Guide</span>
+        <h3><a href="ai-teaching-tools.html">AI Teaching Tools &amp; Resources</a></h3>
+        <p class="blurb">Trainings, demonstration sites, and tools for teaching how machine learning and generative AI work, organized by topic.</p>
+      </li>
+      <li class="note-card">
+        <span class="kind">Guide</span>
+        <h3><a href="legal-research-examples.html">Legal Research Examples</a></h3>
+        <p class="blurb">Real quirks of legal research with citations: partially overruled cases, statutory notes, Congressional Record date mismatches.</p>
+      </li>
+      <li class="note-card">
+        <span class="kind">Guide</span>
+        <h3><a href="language-matters.html">Language Matters</a></h3>
+        <p class="blurb">An inclusive-language guide: common phrases with biased origins and the plain alternatives I use instead.</p>
+      </li>
+      <li class="note-card">
+        <span class="kind">Handbooks</span>
+        <h3><a href="https://lawlibrary.arizona.edu/about/national-law-library-fellows-program" target="_blank" rel="noopener">Law Library Fellows Program handbooks</a></h3>
+        <p class="blurb">Three open volumes for administrators, fellows, and mentors, so any law library can train the next generation.</p>
+      </li>
+    </ul>
+  </div>
 </main>
 
 <footer class="site-footer">
-  <div class="foot-links">
-    <a href="index.html">Who am I?</a>
-    <a href="cv.html">CV</a>
-    <a href="publications.html">Publications</a>
-    <a href="course-materials.html">Course Materials</a>
-    <a href="ai-teaching-tools.html">AI Teaching Tools &amp; Resources</a>
-    <a href="legal-research-examples.html">Legal Research Examples</a>
-    <a href="language-matters.html">Language Matters</a>
-    <a href="blog.html">Blog</a>
-    <a href="contact.html">Contact</a>
+  <div class="wrap">
+    <p class="beta-line">Constantly in beta &middot; built by Cas Laskowski
+      <small>Speaking enquiries and questions welcome: <a href="mailto:claskowski@arizona.edu">claskowski@arizona.edu</a></small>
+    </p>
+    <div class="foot-links">
+      <a href="https://www.linkedin.com/in/caslaskowski/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
   </div>
-  <div class="foot-social">
-    <a href="https://twitter.com/firebrandlib">Twitter</a>
-    <a href="https://www.linkedin.com/in/caslaskowski/">LinkedIn</a>
-    <a href="mailto:claskowski@arizona.edu">Email</a>
+  <div class="foot-bottom">
+    <div class="wrap">
+      <span>&copy; Firebrand Librarian</span>
+    </div>
   </div>
-  <p class="foot-note">&copy; Firebrand Librarian</p>
 </footer>
+<script src="site.js"></script>
 </body>
 </html>

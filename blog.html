@@ -3,48 +3,47 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Blog — Firebrand Librarian</title>
+<title>Marginalia (blog) — Firebrand Librarian</title>
 <meta name="description" content="Posts on teaching, technology, and law librarianship.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,900;1,9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..900,0..100,0..1;1,9..144,400..900,0..100,0..1&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <link rel="icon" href="images/cropped-cropped-fblogo-circle.png">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
-<a class="banner" href="index.html" aria-label="Firebrand Librarian — home">
-  <img src="images/cropped-cropped-banner.jpg" alt="Funko Pop figures of women superheroes lined up on a bookshelf between books on libraries, law, and technology">
-</a>
-
 <header class="site-header">
-  <div class="brand">
-    <a class="logo" href="index.html" aria-label="Firebrand Librarian — home">
-      <img class="logo-img" src="images/cropped-cropped-fblogo-circle.png" alt="" width="58" height="58">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <img src="images/cropped-cropped-fblogo-circle.png" alt="" width="44" height="44">
       <span class="wordmark">
-        <span class="word-fire">Firebrand</span>
-        <span class="word-lib">Librarian</span>
+        <span class="name"><span>Firebrand</span> Librarian</span>
+        <span class="beta">Constantly in beta.</span>
       </span>
     </a>
-    <p class="tagline">Constantly in beta.</p>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="lines" aria-hidden="true"><i></i><i></i></span> Poke around
+    </button>
   </div>
-  <nav class="site-nav" aria-label="Primary">
-    <a href="index.html">Who am I?</a>
-    <a href="cv.html">CV</a>
-    <a href="publications.html">Publications</a>
-    <a href="course-materials.html">Course Materials</a>
-    <a href="language-matters.html">Language Matters</a>
-    <a href="blog.html" class="active" aria-current="page">Blog</a>
-    <a href="contact.html">Contact</a>
+  <nav class="site-nav" id="site-nav" aria-label="Primary">
+    <div class="wrap">
+      <a href="projects.html"><span class="label">Projects</span><span class="desc">Everything built, by area</span></a>
+      <a href="publications.html"><span class="label">Publications</span><span class="desc">Books, chapters, reports, articles</span></a>
+      <a href="speaking.html"><span class="label">Speaking</span><span class="desc">Talks, panels, workshops, podcasts</span></a>
+      <a href="course-materials.html"><span class="label">Teaching</span><span class="desc">Courses, textbook, tools, guides</span></a>
+      <a href="blog.html" aria-current="page"><span class="label">Marginalia <span>(blog)</span></span><span class="desc">Notes since 2016</span></a>
+      <a href="character-sheet.html"><span class="label">Character Sheet <span>(CV)</span></span><span class="desc">The abbreviated record, plus the full download</span></a>
+      <a href="contact.html"><span class="label">Contact</span><span class="desc">Email and speaking enquiries</span></a>
+    </div>
   </nav>
 </header>
-<div class="header-rule"><hr></div>
 
-<main id="main">
-<h1>Blog</h1>
+<main id="main" class="legacy">
+<h1>Marginalia</h1>
 
-<p>Notes on teaching, technology, librarianship, and the occasional firebrand opinion.</p>
+<p class="lede">The blog. Notes in the margins on teaching, technology, librarianship, and the occasional firebrand opinion.</p>
 
 <ul class="post-list">
   <li>
@@ -129,23 +128,20 @@
 </main>
 
 <footer class="site-footer">
-  <div class="foot-links">
-    <a href="index.html">Who am I?</a>
-    <a href="cv.html">CV</a>
-    <a href="publications.html">Publications</a>
-    <a href="course-materials.html">Course Materials</a>
-    <a href="ai-teaching-tools.html">AI Teaching Tools &amp; Resources</a>
-    <a href="legal-research-examples.html">Legal Research Examples</a>
-    <a href="language-matters.html">Language Matters</a>
-    <a href="blog.html">Blog</a>
-    <a href="contact.html">Contact</a>
+  <div class="wrap">
+    <p class="beta-line">Constantly in beta &middot; built by Cas Laskowski
+      <small>Speaking enquiries and questions welcome: <a href="mailto:claskowski@arizona.edu">claskowski@arizona.edu</a></small>
+    </p>
+    <div class="foot-links">
+      <a href="https://www.linkedin.com/in/caslaskowski/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
   </div>
-  <div class="foot-social">
-    <a href="https://twitter.com/firebrandlib">Twitter</a>
-    <a href="https://www.linkedin.com/in/caslaskowski/">LinkedIn</a>
-    <a href="mailto:claskowski@arizona.edu">Email</a>
+  <div class="foot-bottom">
+    <div class="wrap">
+      <span>&copy; Firebrand Librarian</span>
+    </div>
   </div>
-  <p class="foot-note">&copy; Firebrand Librarian</p>
 </footer>
+<script src="site.js"></script>
 </body>
 </html>

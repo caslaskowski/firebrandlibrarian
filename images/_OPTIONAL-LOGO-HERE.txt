@@ -1,6 +1,0 @@
-The site already has a built-in flame logo (drawn with code), so it needs
-NO image files to look complete.
-
-This folder is only here in case you'd like to drop your original banner or
-circular logo back in later. See the README ("Optional: your old logo")
-for how. You can delete this note file if you don't need it.

@@ -1,116 +1,64 @@
-# Firebrand Librarian — static site
+# Firebrand Librarian
 
-A plain HTML/CSS version of firebrandlibrarian.com, rebuilt **directly from
-your WordPress export** so it can live on **GitHub Pages for free** with no
-Bluehost, no WordPress, no database — just files.
+firebrandlibrarian.com, as plain HTML, CSS, and one small JavaScript file, hosted on GitHub Pages. No build step, no framework, no dependencies. Edit a file, commit, and the site updates in about a minute.
 
-Your circular logo and the bookshelf banner are included in `images/`, and the
-brand red (#9e3232) is used across headers, links, and accents.
+## What changed in this rework
 
-## Pages (all built from your export)
+- **Home** (`index.html`): the Funko shelf photo is back as the hero. Below it, the six identities ("I'm a librarian / tinker / leader / creator / mentor / advocate") as one-liners; on desktop the big red word on the left swaps as you scroll the lines on the right. Then a one-line "Why Firebrand?" band linking to the 2018 *Firebranded* post, then **Release notes**, six cards for recent work.
+- **Projects** (`projects.html`): filter chips, and cards that open on hover, focus, or click. Click pins a card open; the toggle is a real button with `aria-expanded`, so it works with a keyboard and on touch.
+- **Character Sheet** (`character-sheet.html`): the CV, rebuilt from the September 2026 Word file, with the long lists (presentations, committee record) tucked into expandable sections. `cv.html` redirects here so old links keep working. The Word file is in `files/` behind the download button.
+- **Publications** (`publications.html`): regenerated from the current CV.
+- **Speaking** (`speaking.html`): new. Invited talks, presentations, workshops, webinars, podcasts, from the CV.
+- **Teaching** (`course-materials.html`, same filename so old links work): rebuilt. Textbook and websites first, then courses with their syllabi, then the guides (AI Teaching Tools, Legal Research Examples, Language Matters, the Fellows handbooks) as cards. The Gen AI appendix was removed.
+- **Marginalia** (`blog.html`): the blog, renamed. Posts kept word for word.
+- **Contact** (`contact.html`): same links, shorter copy.
+- Language Matters, AI Teaching Tools, and Legal Research Examples kept their content and now live under Teaching (they light up Teaching in the menu and link back to it).
+- **Type**: Fraunces for headings and the wordmark, Nunito for body. Both from Google Fonts. Fraunces is loaded with its SOFT and WONK axes so headings have some hand-drawn warmth.
+- **Menu**: a two-line "Poke around" button on every screen size opens a panel listing the seven sections with a short description each.
+- **External links open in a new tab** (`target="_blank" rel="noopener"`) so nothing navigates away from the site. Internal links stay in the same tab.
+
+## Files
 
 ```
-index.html                    Who am I?           (home)
-cv.html                       CV                  (full CV — see note)
-publications.html             Publications        (books, chapters, articles, reviews)
-course-materials.html         Course Materials    (+ links to the two below)
-ai-teaching-tools.html        AI Teaching Tools & Resources
-legal-research-examples.html  Legal Research Examples
-language-matters.html         Language Matters    (inclusive-language guide)
-contact.html                  Contact
-blog.html                     Blog index
-<13 post pages>.html          one file per published post
-style.css                     one stylesheet for everything
-.nojekyll                     serve files as-is on GitHub Pages
-files/                        drop your PDFs/DOCX here (see below)
-images/                       your logo + banner (included)
+index.html               Home
+projects.html            Projects (filterable, expanding cards)
+speaking.html            Speaking
+character-sheet.html     CV
+cv.html                  redirect → character-sheet.html
+publications.html        Publications
+course-materials.html    Teaching (links to the two below)
+ai-teaching-tools.html
+legal-research-examples.html
+language-matters.html
+blog.html + 13 posts     Marginalia
+contact.html
+style.css                all styles
+site.js                  nav toggle, identity word swap, project filters/cards
+images/                  logo, banner
+images/projects/         one photo per project card (see README.txt there for filenames)
+files/                   CV_Claskowski.docx and any PDFs you link to
+CNAME, .nojekyll         GitHub Pages plumbing
 ```
 
-### Notes on what came from the export
-- Your **blog** (13 published posts) and the **Publications** and **Language
-  Matters** pages were all published but weren't in your site's menu. They're
-  included here and added to the navigation so nothing is lost. If you'd rather
-  hide any of them, delete its line from the `<nav>` in each `.html` file (or
-  just delete the page).
-- Your **CV page was empty** in the current site's export, so I filled it from
-  your older `firebrandlib.wordpress.com` export, which still had a full CV
-  (experience, education, presentations, service, awards). **Heads up: that CV
-  is from around 2020** — it lists Duke as current, degrees "forthcoming 2020,"
-  and an NCSU candidacy through 2022, so the dates predate your move to Arizona
-  and will need refreshing. Its Publications section is also older than your
-  separate, current Publications page, so you may want to trim one of the two.
-  Edit `cv.html` to update.
-- On **Language Matters**, two leftover WordPress widget lists ("Categories"
-  and "Recent Posts") pointed at an old `firebrandlib.com` domain via the
-  Wayback Machine. Those were sidebar chrome, not page content, so they were
-  left off. The actual guide and its Resources are intact.
-- External links you'd already routed through the Wayback Machine (on the AI
-  Tools, Language Matters, and Contact pages) are preserved exactly.
-- Text is reproduced verbatim from your export — wording and spelling are
-  yours to edit if you like.
+## Editing the things that change most
 
----
+**Home identity lines.** In `index.html`, each is an `<li data-word="…">` inside `<ol class="identity-list">`. Change the text inside `<span class="line">`. The `data-word` attribute is what the big red word shows; the script picks "a" or "an" automatically.
 
-## Before you cancel Bluehost: save these files
+**Release notes cards.** In `index.html`, each card is an `<li class="note-card">` with a `kind` pill, a title (linked if there is a URL), a `when` line, and a `blurb`. Copy one, edit, done. Keep it to six; older items belong on Publications.
 
-Your documents are files stored on Bluehost. Grab them while the old site is
-up (WordPress **Media Library** is easiest), then drop them into `files/`
-using the names below — they're the original filenames, so downloads should
-already match.
+**Projects.** In `projects.html`, each is an `<li class="project" data-track="…">`. Tracks are `ai`, `research`, `librarianship`, `collaborations`; they set the colour bar and the filter. Add a project by copying a card and giving its panel a unique `id` that matches the button's `aria-controls`.
 
-| Where it's used | File name (put in `files/`) |
-|---|---|
-| Course Materials | `AI-and-Data-Course-Overview-F23.pdf` |
-| Course Materials | `A2J-Project.pdf` |
-| Course Materials | `24S-UA-LPT.pdf` |
-| Course Materials | `S-25-Gen-AI-Assignment.pdf` |
-| Course Materials | `S24-Gen-AI-Appendix-3-EDUCATION-LAW-_-9.04.docx` |
-| Blog post (Assignments & Syllabus) | `fiu-technology-pitch-assignment.pdf` |
-| Blog post (Assignments & Syllabus) | `fiu-professional-development-assignment.pdf` |
-| Blog post (Assignments & Syllabus) | `fiu-software-evaluation-assignment.pdf` |
-| Blog post (Assignments & Syllabus) | `fiu-law-practice-technology-syllabus-cl-draft.pdf` |
+**Project photos.** Each card has an image region that shrinks as the description opens. Drop a JPG into `images/projects/` with the filename printed in the card's placeholder (the list is in `images/projects/README.txt`). The label disappears once the image loads; until then the region shows a soft tint.
 
-The site works without these; those links just 404 until the files are added.
+**Character Sheet.** Ordinary HTML lists. Long sections live inside `<details>` so the page stays scannable; the summary text is the clickable label. Replace `files/CV_Claskowski.docx` when the CV changes (same filename, and the download button keeps working).
 
----
+**Colours and type.** All tokens are at the top of `style.css` under `:root`. The brand red is `--red: #9e3232`.
 
-## Option A — Put it online (no command line)
+## Still to do
 
-1. Make a free account at https://github.com.
-2. **New repository** → name it (e.g. `firebrandlibrarian`) → **Public** → create.
-3. Click **uploading an existing file** and drag in **everything from this
-   folder** (all `.html` files, `style.css`, the `files/` and `images/`
-   folders, and `.nojekyll`). Commit.
-4. **Settings → Pages** → Source: **Deploy from a branch**, Branch:
-   **main / (root)** → Save.
-5. Wait a minute; GitHub shows your live URL,
-   `https://YOURNAME.github.io/firebrandlibrarian/`.
+- **Project photos.** See above; nine filenames are waiting in `images/projects/`.
+- **Syllabus PDFs.** Teaching links to `files/AI-and-Data-Course-Overview-F23.pdf`, `files/A2J-Project.pdf`, `files/24S-UA-LPT.pdf`, and `files/S-25-Gen-AI-Assignment.pdf`. Those files were never in this repo; drop them into `files/` or the links 404.
 
-## Option B — Keep using firebrandlibrarian.com
+## Local preview
 
-Point your domain at GitHub Pages so the same address keeps working:
-
-1. At your domain registrar, set DNS per GitHub's current instructions:
-   https://docs.github.com/pages/configuring-a-custom-domain-for-your-github-pages-site
-2. Repo **Settings → Pages → Custom domain** → enter `firebrandlibrarian.com`
-   → Save → enable **Enforce HTTPS**.
-
-> Your domain *registration* is separate from Bluehost *hosting*. If the domain
-> is registered through Bluehost, keep just the domain (or transfer it to
-> another registrar) before cancelling hosting, or you'd lose the name.
-
----
-
-## Editing later
-
-Everything is editable text. Change wording by editing the text inside the
-`.html` files; restyle by editing `style.css`. On GitHub you can edit any file
-in the browser (pencil icon) and the live site updates in about a minute.
-
-### Swapping the logo or banner
-Your real logo (`cropped-cropped-fblogo-circle.png`) and banner
-(`cropped-cropped-banner.jpg`) are already in `images/` and wired in. To change
-either, drop a replacement in `images/` with the same filename, or edit the
-`<img>` paths in the page templates. The logo is shown as a circle and the
-banner is cropped to a strip; adjust `.logo-img` / `.banner img` in `style.css`
-to taste.
+Open any `.html` in a browser. Fonts load from Google, so they need a connection; everything else works offline.
