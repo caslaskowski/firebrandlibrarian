@@ -5,6 +5,7 @@ firebrandlibrarian.com, as plain HTML, CSS, and one small JavaScript file, hoste
 ## What changed in this rework
 
 - **Home** (`index.html`): the Funko shelf photo is back as the hero. Below it, the six identities ("I'm a librarian / tinker / leader / creator / mentor / advocate") as one-liners; on desktop the big red word on the left swaps as you scroll the lines on the right. Then a one-line "Why Firebrand?" band linking to the 2018 *Firebranded* post, then **Release notes**, six cards for recent work.
+- **The Gallery** (`gallery.html`): new. A walk-through of legal informatics built by law librarians, organized into "halls". Each work hangs in a frame; hover, focus, or tap it and the wall text slides up. See "Editing the Gallery" below.
 - **Projects** (`projects.html`): filter chips, and cards that open on hover, focus, or click. Click pins a card open; the toggle is a real button with `aria-expanded`, so it works with a keyboard and on touch.
 - **Character Sheet** (`character-sheet.html`): the CV, rebuilt from the September 2026 Word file, with the long lists (presentations, committee record) tucked into expandable sections. `cv.html` redirects here so old links keep working. The Word file is in `files/` behind the download button.
 - **Publications** (`publications.html`): regenerated from the current CV.
@@ -14,7 +15,7 @@ firebrandlibrarian.com, as plain HTML, CSS, and one small JavaScript file, hoste
 - **Contact** (`contact.html`): same links, shorter copy.
 - Language Matters, AI Teaching Tools, and Legal Research Examples kept their content and now live under Teaching (they light up Teaching in the menu and link back to it).
 - **Type**: Fraunces for headings and the wordmark, Nunito for body. Both from Google Fonts. Fraunces is loaded with its SOFT and WONK axes so headings have some hand-drawn warmth.
-- **Menu**: a two-line "Poke around" button on every screen size opens a panel listing the seven sections with a short description each.
+- **Menu**: a two-line "Poke around" button on every screen size opens a panel listing the eight sections with a short description each.
 - **External links open in a new tab** (`target="_blank" rel="noopener"`) so nothing navigates away from the site. Internal links stay in the same tab.
 
 ## Files
@@ -22,6 +23,7 @@ firebrandlibrarian.com, as plain HTML, CSS, and one small JavaScript file, hoste
 ```
 index.html               Home
 projects.html            Projects (filterable, expanding cards)
+gallery.html             The Gallery (halls of framed work)
 speaking.html            Speaking
 character-sheet.html     CV
 cv.html                  redirect → character-sheet.html
@@ -33,9 +35,10 @@ language-matters.html
 blog.html + 13 posts     Marginalia
 contact.html
 style.css                all styles
-site.js                  nav toggle, identity word swap, project filters/cards
+site.js                  nav toggle, identity word swap, project filters/cards, gallery frames
 images/                  logo, banner
 images/projects/         one photo per project card (see README.txt there for filenames)
+images/gallery/          optional screenshots for gallery frames (see README.txt there)
 files/                   CV_Claskowski.docx and any PDFs you link to
 CNAME, .nojekyll         GitHub Pages plumbing
 ```
@@ -49,6 +52,15 @@ CNAME, .nojekyll         GitHub Pages plumbing
 **Projects.** In `projects.html`, each is an `<li class="project" data-track="…">`. Tracks are `ai`, `research`, `librarianship`, `collaborations`; they set the colour bar and the filter. Add a project by copying a card and giving its panel a unique `id` that matches the button's `aria-controls`.
 
 **Project photos.** Each card has an image region that shrinks as the description opens. Drop a JPG into `images/projects/` with the filename printed in the card's placeholder (the list is in `images/projects/README.txt`). The label disappears once the image loads; until then the region shows a soft tint.
+
+**The Gallery.** In `gallery.html`, each hall is a `<section class="hall">` with its own colours set inline (`--wall`, `--wain`, `--h1`, `--h2`: wall, wainscot, and the two plate colours). Each work is an `<li class="exhibit">`. To add one, copy an existing `<li>`, then change:
+
+- the title, creator line, description, and links (the first link in the wall text is the "Step closer" link);
+- the `id` on `.placard`, which must match `aria-controls` on its button;
+- `data-motif` (`rings`, `grid`, `dots`, `ledger`, `stripes`) for the background pattern;
+- the plate type. `plate--site` draws a browser window and shows the `data-domain` in its address bar. `plate--paper` draws a book cover and shows the `data-kind` label ("Report", "Open textbook").
+
+Keep descriptions to about 30 words so they fit the frame. To use a real screenshot or cover instead of the generated plate, drop a JPG in `images/gallery/` (names in the README there). It covers the plate automatically and the plate returns if the file is removed. Hall V ("The Open Wall") holds the nomination frame, which opens an email to you; to add a hall, copy a `<section>`, give it the next `id`, and add it to the floor plan at the top.
 
 **Character Sheet.** Ordinary HTML lists. Long sections live inside `<details>` so the page stays scannable; the summary text is the clickable label. Replace `files/CV_Claskowski.docx` when the CV changes (same filename, and the download button keeps working).
 

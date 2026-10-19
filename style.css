@@ -407,3 +407,179 @@ blockquote { margin: .6rem 0 1.2rem; padding: .2rem 0 .2rem 1.1rem; border-left:
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
+
+/* ===================== GALLERY ===================== */
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.gallery-page .site-footer { margin-top: 0; }
+
+.floorplan-label { font-family: var(--display); font-style: italic; color: var(--muted); margin: 1.4rem 0 .5rem; }
+.floorplan { list-style: none; display: flex; flex-wrap: wrap; gap: .7rem; margin: 0; padding: 0; }
+.floorplan a {
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: .15rem;
+  width: 128px; min-height: 104px; padding: 1.1rem .7rem .65rem; text-align: center; text-decoration: none; color: var(--ink);
+  background: var(--card); border: 2px solid var(--rule); border-bottom: 0; border-radius: 999px 999px 0 0;
+  font-family: var(--display); line-height: 1.15; transition: background .2s, color .2s, border-color .2s;
+}
+.floorplan .num { font-weight: 900; font-size: 1.5rem; color: var(--red); font-variation-settings: "SOFT" 80, "WONK" 1; }
+.floorplan .nm { font-size: .84rem; color: var(--muted); }
+.floorplan a:hover, .floorplan a[aria-current="true"] { background: var(--ink); border-color: var(--ink); }
+.floorplan a:hover .num, .floorplan a[aria-current="true"] .num { color: var(--salmon); }
+.floorplan a:hover .nm, .floorplan a[aria-current="true"] .nm { color: var(--cream); }
+.gallery-key { color: var(--muted); font-size: .98rem; max-width: 64ch; margin: 1.3rem 0 2.6rem; }
+
+/* The hall: wall, wainscot, and a little light on each work */
+.hall {
+  --wall: #f1e6d8; --wain: #e0cfb7; --h1: var(--red); --h2: var(--salmon);
+  position: relative; isolation: isolate; scroll-margin-top: 70px;
+  background: var(--wall); padding: 3.4rem 0 7.2rem;
+  border-top: 1px solid rgba(36,29,24,.08);
+}
+.hall::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 58px; z-index: -1;
+  background: var(--wain); border-top: 4px solid rgba(255,255,255,.5);
+  box-shadow: inset 0 12px 14px -12px rgba(36,29,24,.3);
+}
+.hall-sign { display: grid; grid-template-columns: auto 1fr; column-gap: 1.5rem; row-gap: .4rem; align-items: end; margin-bottom: 2.6rem; }
+.hall-sign .numeral {
+  grid-row: span 2; font-family: var(--display); font-weight: 900; font-variation-settings: "SOFT" 80, "WONK" 1;
+  font-size: clamp(3.6rem, 9vw, 6rem); line-height: .85; color: var(--h1); min-width: 1.1ch; align-self: center;
+}
+.hall-sign h2 { align-self: end; }
+.hall-sign p { grid-column: 2; margin: 0; max-width: 60ch; color: #3d352d; }
+@media (max-width: 560px) { .hall-sign { grid-template-columns: 1fr; } .hall-sign .numeral { grid-row: auto; } .hall-sign p { grid-column: 1; } }
+
+.exhibits {
+  list-style: none; margin: 0; padding: 2.6rem 0 0;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 310px));
+  justify-content: center; gap: 3.4rem 2.2rem;
+}
+.exhibit { position: relative; }
+.exhibit::before {                     /* the light cone */
+  content: ""; position: absolute; z-index: -1; top: -2.2rem; left: 50%; width: 118%; height: 80%;
+  transform: translateX(-50%); pointer-events: none; opacity: .5; transition: opacity .35s ease;
+  background: radial-gradient(ellipse 50% 100% at 50% 0, rgba(255,248,230,.95), rgba(255,248,230,0) 72%);
+}
+.exhibit::after {                      /* the lamp */
+  content: ""; position: absolute; top: -2.4rem; left: 50%; width: 56px; height: 9px; transform: translateX(-50%);
+  background: #3a2a22; border-radius: 5px; box-shadow: 0 5px 10px rgba(255,236,190,.9);
+}
+.exhibit:hover::before, .exhibit:has(:focus-visible)::before, .exhibit.open::before { opacity: 1; }
+
+.frame {
+  position: relative; padding: 10px; border-radius: 3px; background: var(--frame, #2b1a14);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.14), 0 3px 6px rgba(36,29,24,.25), 0 16px 26px -12px rgba(36,29,24,.5);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.exhibit:hover .frame, .exhibit:has(:focus-visible) .frame, .exhibit.open .frame {
+  transform: translateY(-4px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.14), 0 4px 8px rgba(36,29,24,.25), 0 24px 34px -12px rgba(36,29,24,.55);
+}
+.mat { position: relative; padding: 14px; background: #fbf7ef; box-shadow: inset 0 0 0 1px rgba(36,29,24,.12), inset 0 2px 7px rgba(36,29,24,.2); }
+.frame-btn { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: pointer; color: inherit; text-decoration: none; }
+.frame-btn:focus-visible { outline-offset: 4px; }
+
+/* Wall text that appears on hover, focus, or tap */
+.placard {
+  position: absolute; inset: 14px; z-index: 2; display: flex; flex-direction: column; justify-content: flex-end; gap: .45rem;
+  padding: 1rem 1.1rem; overflow: auto; color: var(--cream);
+  background: rgb(33,20,15);
+  opacity: 0; visibility: hidden; transform: translateY(10px);
+  transition: opacity .3s ease, transform .3s ease, visibility 0s linear .3s;
+}
+.exhibit:hover .placard, .exhibit:has(:focus-visible) .placard, .exhibit.open .placard {
+  opacity: 1; visibility: visible; transform: none; transition-delay: 0s;
+}
+.placard p { margin: 0; }
+.placard .kind { font-family: var(--display); font-style: italic; color: var(--salmon); font-size: .88rem; }
+.placard .desc { font-size: .9rem; line-height: 1.42; }
+.placard .links { display: flex; flex-wrap: wrap; gap: .25rem 1rem; margin-top: .15rem; }
+.placard a { color: #fff; font-weight: 700; font-size: .92rem; text-decoration-color: var(--salmon); text-decoration-thickness: 2px; }
+.placard a:hover { color: var(--salmon); }
+.placard a:focus-visible { outline-color: var(--salmon); }
+
+/* Museum label under each frame */
+.label {
+  width: calc(100% - 2.2rem); margin: 1.2rem auto 0; padding: .7rem .9rem .75rem;
+  background: #fffdf8; border: 1px solid rgba(36,29,24,.14); box-shadow: 0 2px 4px rgba(36,29,24,.12);
+}
+.label h3 { font-size: 1.08rem; line-height: 1.2; }
+.label h3 a { color: var(--ink); text-decoration: none; }
+.label h3 a:hover { color: var(--red); text-decoration: underline; }
+.label .by { margin: .3rem 0 0; font-size: .85rem; line-height: 1.35; color: var(--muted); }
+
+.walk-on { margin: 3rem 0 0; text-align: right; font-family: var(--display); font-style: italic; font-size: 1.1rem; }
+.walk-on a { text-decoration: none; font-weight: 600; }
+.walk-on a:hover { text-decoration: underline; }
+.hall--open { padding-bottom: 7.2rem; }
+
+/* ---- Generated plates: stand-ins for websites and writings ---- */
+.plate {
+  position: relative; display: block; aspect-ratio: 5 / 4; overflow: hidden;
+  background-color: var(--h1); background-image: linear-gradient(150deg, var(--h1), var(--h2));
+}
+.exhibit[data-motif="rings"]   .plate { background-image: repeating-radial-gradient(circle at 84% 16%, rgba(255,255,255,.2) 0 2px, transparent 2px 20px), linear-gradient(150deg, var(--h1), var(--h2)); }
+.exhibit[data-motif="grid"]    .plate { background-size: 26px 26px, 26px 26px, auto; background-image: linear-gradient(rgba(255,255,255,.16) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.16) 1px, transparent 1px), linear-gradient(150deg, var(--h1), var(--h2)); }
+.exhibit[data-motif="dots"]    .plate { background-size: 18px 18px, auto; background-image: radial-gradient(rgba(255,255,255,.34) 1.6px, transparent 2px), linear-gradient(150deg, var(--h1), var(--h2)); }
+.exhibit[data-motif="ledger"]  .plate { background-image: repeating-linear-gradient(0deg, rgba(255,255,255,.17) 0 1px, transparent 1px 16px), linear-gradient(150deg, var(--h1), var(--h2)); }
+.exhibit[data-motif="stripes"] .plate { background-image: repeating-linear-gradient(120deg, rgba(255,255,255,.13) 0 10px, transparent 10px 26px), linear-gradient(150deg, var(--h1), var(--h2)); }
+.plate img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; z-index: 1; }
+
+/* a browser window peeking up from the bottom */
+.plate--site::before {
+  content: attr(data-domain); position: absolute; z-index: 0; left: 9%; right: 9%; top: 14%; height: 24px; padding: 0 .7rem 0 3.4rem;
+  font: 600 .68rem/24px var(--body); color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  border-radius: 8px 8px 0 0;
+  background:
+    radial-gradient(circle at 14px 12px, #e8968c 3.6px, transparent 4px),
+    radial-gradient(circle at 27px 12px, #e6c067 3.6px, transparent 4px),
+    radial-gradient(circle at 40px 12px, #8fc08f 3.6px, transparent 4px),
+    #f3ece0;
+}
+.plate--site .ttl {
+  position: absolute; left: 9%; right: 9%; top: calc(14% + 24px); bottom: 0; padding: 1rem 1.05rem;
+  background: #fffdf9; color: var(--ink); box-shadow: 0 14px 26px rgba(0,0,0,.28);
+  font-family: var(--display); font-weight: 700; font-size: 1.14rem; line-height: 1.15; letter-spacing: -.01em;
+}
+.plate--site .ttl::after, .plate--paper .ttl::after {
+  content: ""; display: block; margin-top: .85rem; height: 46px;
+  background:
+    linear-gradient(var(--h1) 0 0) 0 0 / 55% 6px no-repeat,
+    linear-gradient(var(--rule) 0 0) 0 16px / 100% 6px no-repeat,
+    linear-gradient(var(--rule) 0 0) 0 28px / 86% 6px no-repeat,
+    linear-gradient(var(--rule) 0 0) 0 40px / 68% 6px no-repeat;
+}
+
+/* a book cover standing in the middle */
+.plate--paper .ttl {
+  position: absolute; z-index: 0; left: 28%; right: 28%; top: 8%; bottom: 8%; padding: .95rem .8rem .8rem;
+  background: #fbf7ef; border-left: 8px solid var(--h1); color: var(--ink);
+  box-shadow: 8px 10px 20px rgba(0,0,0,.38), inset 2px 0 0 rgba(36,29,24,.08);
+  font-family: var(--display); font-weight: 700; font-size: .98rem; line-height: 1.15; letter-spacing: -.01em; overflow: hidden;
+}
+.plate--paper .ttl::before {
+  content: attr(data-kind); display: block; margin-bottom: .55rem; color: var(--h1);
+  font: 700 .6rem/1.2 var(--body); letter-spacing: .12em; text-transform: uppercase;
+}
+
+/* the empty frame */
+.plate--empty {
+  display: grid; place-content: center; justify-items: center; gap: .4rem; text-align: center;
+  background: var(--paper); background-image: none; border: 2px dashed rgba(36,29,24,.3); color: var(--muted);
+  transition: background .2s, color .2s;
+}
+.plate--empty .plus { font-family: var(--display); font-weight: 300; font-size: 3.4rem; line-height: 1; color: var(--red); }
+.plate--empty .ask { font-family: var(--display); font-style: italic; font-size: 1.05rem; }
+.exhibit--empty:hover .plate--empty, .exhibit--empty .frame-btn:focus-visible .plate--empty { background: #fff; color: var(--ink); }
+
+/* Touch screens: no hover, so a tap pins the wall text open */
+@media (hover: none) {
+  .exhibit:hover .placard { opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity .3s ease, transform .3s ease, visibility 0s linear .3s; }
+  .exhibit:hover .frame { transform: none; }
+  .exhibit:hover::before { opacity: .5; }
+  .exhibit.open .placard { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+  .exhibit.open .frame { transform: translateY(-4px); }
+  .exhibit.open::before { opacity: 1; }
+}
+@media (max-width: 560px) {
+  .floorplan a { width: calc(50% - .35rem); }
+}

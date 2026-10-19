@@ -92,4 +92,51 @@
       });
     });
   }
+  /* ---- Gallery: tap/click pins a work's wall text; floor plan shows which hall you're in ---- */
+  var exhibits = document.querySelectorAll('.exhibit');
+  if (exhibits.length) {
+    function setOpen(ex, open) {
+      ex.classList.toggle('open', open);
+      var b = ex.querySelector('button.frame-btn');
+      if (b) b.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    function closeAll(except) {
+      exhibits.forEach(function (ex) { if (ex !== except && ex.classList.contains('open')) setOpen(ex, false); });
+    }
+    exhibits.forEach(function (ex) {
+      var btn = ex.querySelector('button.frame-btn');
+      var placard = ex.querySelector('.placard');
+      if (btn) btn.addEventListener('click', function () {
+        var open = !ex.classList.contains('open');
+        closeAll(ex);
+        setOpen(ex, open);
+      });
+      // the placard covers the button once it's showing, so a click on its text puts it away
+      if (placard) placard.addEventListener('click', function (e) {
+        if (e.target.closest('a')) return;
+        setOpen(ex, false);
+        if (btn) btn.focus();
+      });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeAll(null);
+    });
+
+    var plan = document.querySelectorAll('.floorplan a');
+    if (plan.length && 'IntersectionObserver' in window) {
+      var seen = {};
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { seen[en.target.id] = en.isIntersecting; });
+        var here = null;
+        plan.forEach(function (a) { if (!here && seen[a.getAttribute('href').slice(1)]) here = a; });
+        plan.forEach(function (a) {
+          if (a === here) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+        });
+      }, { rootMargin: '-35% 0px -55% 0px' });
+      plan.forEach(function (a) {
+        var hall = document.getElementById(a.getAttribute('href').slice(1));
+        if (hall) io.observe(hall);
+      });
+    }
+  }
 })();
