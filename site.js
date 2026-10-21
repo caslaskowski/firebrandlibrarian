@@ -92,4 +92,150 @@
       });
     });
   }
+
+  /* ---- Tags (Marginalia): pills on posts, filter + search + legend on blog.html.
+         Definitions live in tags.js (window.FB_TAGS). ---- */
+  var TAGS = window.FB_TAGS;
+  if (TAGS && TAGS.tags) {
+    var tagById = {};
+    TAGS.tags.forEach(function (t) { tagById[t.id] = t; });
+
+    function parseTags(el) {
+      return (el.getAttribute('data-tags') || '').split(',')
+        .map(function (s) { return s.trim(); })
+        .filter(function (s, i, a) { return s && a.indexOf(s) === i; });
+    }
+    function readHash() {
+      var m = /(?:^#|&)tag=([^&]+)/.exec(location.hash || '');
+      return m ? decodeURIComponent(m[1]) : 'all';
+    }
+    function tagLink(id, active) {
+      var t = tagById[id];
+      if (!t) { if (window.console) console.warn('Unknown tag id "' + id + '". Add it to tags.js.'); return null; }
+      var a = document.createElement('a');
+      a.className = 'tag';
+      a.setAttribute('data-tag', id);
+      a.setAttribute('data-group', t.group);
+      a.href = 'blog.html#tag=' + encodeURIComponent(id);
+      a.title = t.definition;                       // hover shows the definition
+      a.textContent = t.label;
+      if (active) a.setAttribute('aria-current', 'true');
+      return a;
+    }
+    function fillTags(host, ids, help) {
+      ids.forEach(function (id) { var a = tagLink(id); if (a) host.appendChild(a); });
+      if (help && host.children.length) {
+        var h = document.createElement('a');
+        h.className = 'tags-help'; h.href = 'blog.html#tags'; h.textContent = 'what the tags mean';
+        host.appendChild(h);
+      }
+    }
+
+    /* Post pages: <p class="post-tags" data-tags="..."></p> */
+    document.querySelectorAll('.post-tags[data-tags]').forEach(function (el) {
+      if (el.closest('.post-list')) return;
+      fillTags(el, parseTags(el), true);
+    });
+
+    /* Blog index */
+    var postList = document.querySelector('.post-list');
+    var chipHost = document.getElementById('tag-chips');
+    if (postList && chipHost) {
+      var posts = Array.prototype.slice.call(postList.querySelectorAll(':scope > li'));
+      var search = document.getElementById('post-search');
+      var defBox = document.getElementById('tag-def');
+      var legend = document.getElementById('tags');
+      var empty = document.getElementById('no-posts');
+      var counts = {};
+
+      posts.forEach(function (li) {
+        var ids = parseTags(li);
+        li._tags = ids;
+        ids.forEach(function (id) { counts[id] = (counts[id] || 0) + 1; });
+        if (ids.length) {
+          var p = document.createElement('p');
+          p.className = 'post-tags';
+          fillTags(p, ids, false);
+          li.appendChild(p);
+        }
+        li._text = li.textContent.toLowerCase();   // title, excerpt, date, and tag labels
+      });
+
+      /* Filter chips, grouped, only for tags that have posts */
+      function chip(id, label, n) {
+        var a = document.createElement('a');
+        a.className = 'chip';
+        a.setAttribute('data-tag', id);
+        a.href = id === 'all' ? 'blog.html#' : 'blog.html#tag=' + encodeURIComponent(id);
+        a.textContent = label;
+        if (id !== 'all' && tagById[id]) a.title = tagById[id].definition;
+        var s = document.createElement('span'); s.className = 'n'; s.textContent = ' ' + n;
+        a.appendChild(s);
+        return a;
+      }
+      var allRow = document.createElement('div'); allRow.className = 'chip-group';
+      allRow.appendChild(chip('all', 'All posts', posts.length));
+      chipHost.appendChild(allRow);
+      TAGS.groups.forEach(function (g) {
+        var inGroup = TAGS.tags.filter(function (t) { return t.group === g.id && counts[t.id]; });
+        if (!inGroup.length) return;
+        var row = document.createElement('div'); row.className = 'chip-group';
+        var gl = document.createElement('span'); gl.className = 'gl'; gl.textContent = g.label;
+        row.appendChild(gl);
+        inGroup.forEach(function (t) { row.appendChild(chip(t.id, t.label, counts[t.id])); });
+        chipHost.appendChild(row);
+      });
+
+      /* Legend: every tag, with its definition, whether or not it has posts yet */
+      if (legend) {
+        var body = legend.querySelector('.legend-body') || legend;
+        TAGS.groups.forEach(function (g) {
+          var h = document.createElement('h3'); h.textContent = g.label; body.appendChild(h);
+          if (g.note) { var n = document.createElement('p'); n.className = 'note'; n.textContent = g.note; body.appendChild(n); }
+          var dl = document.createElement('dl');
+          TAGS.tags.filter(function (t) { return t.group === g.id; }).forEach(function (t) {
+            var dt = document.createElement('dt');
+            var a = tagLink(t.id); if (a) dt.appendChild(a);
+            if (!counts[t.id]) { var s = document.createElement('span'); s.className = 'n'; s.textContent = 'no posts yet'; dt.appendChild(s); }
+            var dd = document.createElement('dd'); dd.textContent = t.definition;
+            dl.appendChild(dt); dl.appendChild(dd);
+          });
+          body.appendChild(dl);
+        });
+      }
+
+      function apply() {
+        var key = readHash();
+        if (key !== 'all' && !tagById[key]) key = 'all';
+        var q = search ? search.value.trim().toLowerCase() : '';
+        var shown = 0;
+        posts.forEach(function (li) {
+          var ok = (key === 'all' || li._tags.indexOf(key) !== -1) && (!q || li._text.indexOf(q) !== -1);
+          li.hidden = !ok;
+          if (ok) shown++;
+        });
+        chipHost.querySelectorAll('.chip').forEach(function (c) {
+          c.setAttribute('aria-current', c.getAttribute('data-tag') === key ? 'true' : 'false');
+        });
+        postList.querySelectorAll('.tag').forEach(function (t) {
+          if (t.getAttribute('data-tag') === key) t.setAttribute('aria-current', 'true'); else t.removeAttribute('aria-current');
+        });
+        if (defBox) {
+          if (key === 'all') { defBox.hidden = true; defBox.textContent = ''; }
+          else {
+            var t = tagById[key];
+            defBox.hidden = false; defBox.textContent = '';
+            var b = document.createElement('strong'); b.textContent = t.label; defBox.appendChild(b);
+            defBox.appendChild(document.createTextNode(' · ' + t.definition + ' '));
+            var clr = document.createElement('a'); clr.href = 'blog.html#'; clr.textContent = 'Show all posts'; defBox.appendChild(clr);
+          }
+        }
+        if (empty) empty.hidden = shown !== 0;
+        if (legend && location.hash === '#tags') legend.open = true;
+      }
+      window.addEventListener('hashchange', apply);
+      if (search) search.addEventListener('input', apply);
+      apply();
+    }
+  }
 })();
